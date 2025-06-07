@@ -12,10 +12,12 @@ interface MyRouterContext {
 export const Route = createRootRouteWithContext<MyRouterContext>()({
   component: () => (
     <>
-      <Outlet />
-      <TanStackRouterDevtools />
+      <section className="min-h-dvh flex flex-col items-center justify-center">
+        <Outlet />
+        <TanStackRouterDevtools />
 
-      <TanStackQueryLayout />
+        <TanStackQueryLayout />
+      </section>
     </>
   ),
 })

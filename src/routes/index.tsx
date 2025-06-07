@@ -1,62 +1,45 @@
-import { createFileRoute } from '@tanstack/react-router'
-import { useState } from 'react'
+import { createFileRoute, useNavigate } from '@tanstack/react-router'
+import { Btn } from '@/components/Btn'
 
 export const Route = createFileRoute('/')({
   component: App,
 })
 
 function App() {
-  const [year, setYear] = useState<undefined | number>()
+  const navigate = useNavigate({ from: '/' })
 
-  const yearHandler = (val: number) => {
-    setYear(val)
+  const yearHandler = (val: string) => {
+    localStorage.setItem('year', val)
+    navigate({ to: '/month' })
   }
 
   return (
-    <section className="min-h-dvh flex flex-col items-center justify-center">
-      {year ? (
-        <h1>Select the month</h1>
-      ) : (
-        <>
-          <h1 className="text-2xl">Select the year</h1>
-          <div className="flex flex-col gap-8 items-center justify-center m-4 font-bold">
-            <div className="flex gap-8">
-              <Year year={2025} setYear={yearHandler} />
-              <Year year={2026} setYear={yearHandler} />
-              <Year year={2027} setYear={yearHandler} />
-              <Year year={2028} setYear={yearHandler} />
-            </div>
-            <div className="flex gap-8">
-              <Year year={2029} setYear={yearHandler} />
-              <Year year={2030} setYear={yearHandler} />
-              <Year year={2031} setYear={yearHandler} />
-            </div>
-            <div className="flex gap-8">
-              <Year year={2032} setYear={yearHandler} />
-              <Year year={2033} setYear={yearHandler} />
-              <Year year={2034} setYear={yearHandler} />
-              <Year year={2035} setYear={yearHandler} />
-            </div>
-          </div>
-        </>
-      )}
-    </section>
-  )
-}
-
-type Props = {
-  year: number
-  setYear: (val: number) => void
-}
-
-function Year({ year, setYear }: Props) {
-  return (
-    <button
-      type="button"
-      onClick={() => setYear(year)}
-      className="bg-white/30 py-4 px-8 text-2xl rounded-lg cursor-pointer"
-    >
-      {year}
-    </button>
+    <>
+      <img
+        src="years-bg.jpg"
+        alt="background"
+        className="fixed top-0 left-0 -z-10 w-full h-full object-cover"
+      />
+      <h1 className="text-3xl font-extrabold">Select the year</h1>
+      <div className="flex flex-col gap-8 items-center justify-center m-4 font-bold">
+        <div className="flex gap-8">
+          <Btn val={'2025'} setVal={yearHandler} />
+          <Btn val={'2026'} setVal={yearHandler} />
+          <Btn val={'2027'} setVal={yearHandler} />
+          <Btn val={'2028'} setVal={yearHandler} />
+        </div>
+        <div className="flex gap-8">
+          <Btn val={'2029'} setVal={yearHandler} />
+          <Btn val={'2030'} setVal={yearHandler} />
+          <Btn val={'2031'} setVal={yearHandler} />
+        </div>
+        <div className="flex gap-8">
+          <Btn val={'2032'} setVal={yearHandler} />
+          <Btn val={'2033'} setVal={yearHandler} />
+          <Btn val={'2034'} setVal={yearHandler} />
+          <Btn val={'2035'} setVal={yearHandler} />
+        </div>
+      </div>
+    </>
   )
 }
