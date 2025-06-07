@@ -1,6 +1,7 @@
 type CalendarProps = {
   year: string | null
   month: string | null
+  setDay: (val: number) => void
 }
 
 function getMonthFromName(monthName: string | null): number | null {
@@ -13,7 +14,7 @@ function getMonthFromName(monthName: string | null): number | null {
 
 const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 
-const Calendar = ({ year, month }: CalendarProps) => {
+const Calendar = ({ year, month, setDay }: CalendarProps) => {
   const yearNum = Number(year)
   if (isNaN(yearNum)) {
     return
@@ -63,6 +64,7 @@ const Calendar = ({ year, month }: CalendarProps) => {
             day ? (
               <td
                 key={index}
+                onClick={() => setDay(day)}
                 className="p-10 border hover:bg-blue-100 cursor-pointer"
               >
                 {day}

@@ -11,11 +11,18 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as NoteImport } from './routes/note'
 import { Route as MonthImport } from './routes/month'
 import { Route as CalendarImport } from './routes/calendar'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
+
+const NoteRoute = NoteImport.update({
+  id: '/note',
+  path: '/note',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const MonthRoute = MonthImport.update({
   id: '/month',
@@ -60,6 +67,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MonthImport
       parentRoute: typeof rootRoute
     }
+    '/note': {
+      id: '/note'
+      path: '/note'
+      fullPath: '/note'
+      preLoaderRoute: typeof NoteImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -69,12 +83,14 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/calendar': typeof CalendarRoute
   '/month': typeof MonthRoute
+  '/note': typeof NoteRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/calendar': typeof CalendarRoute
   '/month': typeof MonthRoute
+  '/note': typeof NoteRoute
 }
 
 export interface FileRoutesById {
@@ -82,14 +98,15 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/calendar': typeof CalendarRoute
   '/month': typeof MonthRoute
+  '/note': typeof NoteRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/calendar' | '/month'
+  fullPaths: '/' | '/calendar' | '/month' | '/note'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/calendar' | '/month'
-  id: '__root__' | '/' | '/calendar' | '/month'
+  to: '/' | '/calendar' | '/month' | '/note'
+  id: '__root__' | '/' | '/calendar' | '/month' | '/note'
   fileRoutesById: FileRoutesById
 }
 
@@ -97,12 +114,14 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CalendarRoute: typeof CalendarRoute
   MonthRoute: typeof MonthRoute
+  NoteRoute: typeof NoteRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CalendarRoute: CalendarRoute,
   MonthRoute: MonthRoute,
+  NoteRoute: NoteRoute,
 }
 
 export const routeTree = rootRoute
@@ -117,7 +136,8 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/calendar",
-        "/month"
+        "/month",
+        "/note"
       ]
     },
     "/": {
@@ -128,6 +148,9 @@ export const routeTree = rootRoute
     },
     "/month": {
       "filePath": "month.tsx"
+    },
+    "/note": {
+      "filePath": "note.tsx"
     }
   }
 }
