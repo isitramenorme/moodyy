@@ -2,6 +2,8 @@ type CalendarProps = {
   year: string | null
   month: string | null
   setDay: (val: number) => void
+  handleDragOver: (e: React.DragEvent<HTMLTableCellElement>) => void
+  handleDrop: (e: React.DragEvent<HTMLTableCellElement>) => void
 }
 
 function getMonthFromName(monthName: string | null): number | null {
@@ -14,7 +16,13 @@ function getMonthFromName(monthName: string | null): number | null {
 
 const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 
-const Calendar = ({ year, month, setDay }: CalendarProps) => {
+const Calendar = ({
+  year,
+  month,
+  setDay,
+  handleDragOver,
+  handleDrop,
+}: CalendarProps) => {
   const yearNum = Number(year)
   if (isNaN(yearNum)) {
     return
@@ -53,28 +61,34 @@ const Calendar = ({ year, month, setDay }: CalendarProps) => {
 
   return (
     <table className="max-w-2xl mx-auto p-4 bg-white table-fixed border-collapse">
-      <tr className="text-center font-medium text-gray-700">
-        {daysOfWeek.map((day) => (
-          <th key={day}>{day}</th>
-        ))}
-      </tr>
-      {weeks.map((week) => (
-        <tr className="mt-4 text-center">
-          {week.map((day, index) =>
-            day ? (
-              <td
-                key={index}
-                onClick={() => setDay(day)}
-                className="p-10 border hover:bg-blue-100 cursor-pointer"
-              >
-                {day}
-              </td>
-            ) : (
-              <td key={index} className="p-8 border" />
-            ),
-          )}
+      <thead>
+        <tr className="text-center font-medium text-gray-700">
+          {daysOfWeek.map((day) => (
+            <th key={day}>{day}</th>
+          ))}
         </tr>
-      ))}
+      </thead>
+      <tbody>
+        {weeks.map((week, idx) => (
+          <tr key={idx} className="mt-4 text-center">
+            {week.map((day, index) =>
+              day ? (
+                <td
+                  key={index}
+                  onClick={() => setDay(day)}
+                  className="size-24 border hover:bg-blue-100 cursor-pointer px-6"
+                  onDragOver={handleDragOver}
+                  onDrop={handleDrop}
+                >
+                  {day}
+                </td>
+              ) : (
+                <td key={index} className="size-24 border" />
+              ),
+            )}
+          </tr>
+        ))}
+      </tbody>
     </table>
   )
 }

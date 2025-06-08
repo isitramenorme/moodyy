@@ -27,6 +27,7 @@ function RouteComponent() {
           id="title"
           type="text"
           className="border-4 border-dashed border-yellow-800 h-12 text-2xl p-2 font-extrabold outline-none resize-none"
+          placeholder="title"
         />
         <label htmlFor="body" className="sr-only">
           body
@@ -34,6 +35,7 @@ function RouteComponent() {
         <textarea
           id="body"
           className="w-full h-[calc(100%-360px)] border-4 border-dashed border-yellow-800 text-2xl p-2 font-extrabold outline-none resize-none"
+          placeholder="write something nice here ..."
         />
       </div>
     </div>

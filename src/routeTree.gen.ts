@@ -15,6 +15,8 @@ import { Route as NoteImport } from './routes/note'
 import { Route as MonthImport } from './routes/month'
 import { Route as CalendarImport } from './routes/calendar'
 import { Route as IndexImport } from './routes/index'
+import { Route as JamsIndexImport } from './routes/jams/index'
+import { Route as JamsJamImport } from './routes/jams/$jam'
 
 // Create/Update Routes
 
@@ -39,6 +41,18 @@ const CalendarRoute = CalendarImport.update({
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const JamsIndexRoute = JamsIndexImport.update({
+  id: '/jams/',
+  path: '/jams/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const JamsJamRoute = JamsJamImport.update({
+  id: '/jams/$jam',
+  path: '/jams/$jam',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -74,6 +88,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NoteImport
       parentRoute: typeof rootRoute
     }
+    '/jams/$jam': {
+      id: '/jams/$jam'
+      path: '/jams/$jam'
+      fullPath: '/jams/$jam'
+      preLoaderRoute: typeof JamsJamImport
+      parentRoute: typeof rootRoute
+    }
+    '/jams/': {
+      id: '/jams/'
+      path: '/jams'
+      fullPath: '/jams'
+      preLoaderRoute: typeof JamsIndexImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -84,6 +112,8 @@ export interface FileRoutesByFullPath {
   '/calendar': typeof CalendarRoute
   '/month': typeof MonthRoute
   '/note': typeof NoteRoute
+  '/jams/$jam': typeof JamsJamRoute
+  '/jams': typeof JamsIndexRoute
 }
 
 export interface FileRoutesByTo {
@@ -91,6 +121,8 @@ export interface FileRoutesByTo {
   '/calendar': typeof CalendarRoute
   '/month': typeof MonthRoute
   '/note': typeof NoteRoute
+  '/jams/$jam': typeof JamsJamRoute
+  '/jams': typeof JamsIndexRoute
 }
 
 export interface FileRoutesById {
@@ -99,14 +131,23 @@ export interface FileRoutesById {
   '/calendar': typeof CalendarRoute
   '/month': typeof MonthRoute
   '/note': typeof NoteRoute
+  '/jams/$jam': typeof JamsJamRoute
+  '/jams/': typeof JamsIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/calendar' | '/month' | '/note'
+  fullPaths: '/' | '/calendar' | '/month' | '/note' | '/jams/$jam' | '/jams'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/calendar' | '/month' | '/note'
-  id: '__root__' | '/' | '/calendar' | '/month' | '/note'
+  to: '/' | '/calendar' | '/month' | '/note' | '/jams/$jam' | '/jams'
+  id:
+    | '__root__'
+    | '/'
+    | '/calendar'
+    | '/month'
+    | '/note'
+    | '/jams/$jam'
+    | '/jams/'
   fileRoutesById: FileRoutesById
 }
 
@@ -115,6 +156,8 @@ export interface RootRouteChildren {
   CalendarRoute: typeof CalendarRoute
   MonthRoute: typeof MonthRoute
   NoteRoute: typeof NoteRoute
+  JamsJamRoute: typeof JamsJamRoute
+  JamsIndexRoute: typeof JamsIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -122,6 +165,8 @@ const rootRouteChildren: RootRouteChildren = {
   CalendarRoute: CalendarRoute,
   MonthRoute: MonthRoute,
   NoteRoute: NoteRoute,
+  JamsJamRoute: JamsJamRoute,
+  JamsIndexRoute: JamsIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -137,7 +182,9 @@ export const routeTree = rootRoute
         "/",
         "/calendar",
         "/month",
-        "/note"
+        "/note",
+        "/jams/$jam",
+        "/jams/"
       ]
     },
     "/": {
@@ -151,6 +198,12 @@ export const routeTree = rootRoute
     },
     "/note": {
       "filePath": "note.tsx"
+    },
+    "/jams/$jam": {
+      "filePath": "jams/$jam.tsx"
+    },
+    "/jams/": {
+      "filePath": "jams/index.tsx"
     }
   }
 }
