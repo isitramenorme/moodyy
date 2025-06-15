@@ -8,7 +8,7 @@ export function Btn({ val, setVal }: Props) {
     <button
       type="button"
       onClick={() => setVal(val)}
-      className="bg-white/30 py-4 px-8 text-2xl rounded-lg cursor-pointer"
+      className="bg-white/40 py-3 px-4 text-2xl rounded-lg cursor-pointer"
     >
       {val}
     </button>

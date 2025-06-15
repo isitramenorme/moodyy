@@ -16,13 +16,13 @@ function RouteComponent() {
   return (
     <>
       <img
-        src="years-bg.jpg"
+        src="month-bg.jpg"
         alt="background"
         className="fixed top-0 left-0 -z-10 w-full h-full object-cover"
       />
       <h1 className="text-3xl font-extrabold">Select the month</h1>
       <div className="flex flex-col gap-8 items-center justify-center m-4 font-bold">
-        <div className="grid grid-cols-3 grid-rows-4 gap-8">
+        <div className="grid grid-cols-3 grid-rows-4 gap-6">
           <Btn val={'January'} setVal={monthHandler} />
           <Btn val={'February'} setVal={monthHandler} />
           <Btn val={'March'} setVal={monthHandler} />

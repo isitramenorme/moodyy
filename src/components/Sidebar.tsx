@@ -13,17 +13,17 @@ export function Sidebar({ handleDragStart }: Props) {
       <Link to="/jams">
         <button
           type="button"
-          className="sticky border rounded-full size-16 hover:scale-110 transition-scale ease-in duration-200 active:opacity-30"
+          className="sticky border rounded-full size-16 hover:scale-110 transition-scale ease-in duration-200 active:opacity-30 overflow-hidden flex items-center justify-center"
         >
-          Jam box
+          <img src="jams.jpg" alt="jam box" className="size-18" />
         </button>
       </Link>
       <button
         type="button"
-        className="sticky border rounded-full size-16 hover:scale-110 transition-scale ease-in duration-200 active:opacity-30"
+        className="sticky border rounded-full size-16 hover:scale-110 transition-scale ease-in duration-200 active:opacity-30 overflow-hidden flex items-center justify-center"
         onClick={() => setIsOpen(!isOpen)}
       >
-        Peelings
+        <img src="emotions.jpg" alt="peelings" className="size-18" />
       </button>
       {isOpen && (
         <div
@@ -32,68 +32,68 @@ export function Sidebar({ handleDragStart }: Props) {
           }
         >
           <img
-            src="https://placehold.co/64"
-            alt="emotion"
+            src="happy.webp"
+            alt="happy"
             className="size-11.5 cursor-move"
-            id="external-draggable"
+            id="happy"
             draggable
-            onDragStart={(e) => handleDragStart(e, 'external-draggable')}
+            onDragStart={(e) => handleDragStart(e, 'happy')}
           />
           <img
-            src="https://placehold.co/64"
-            alt="emotion"
+            src="sad.webp"
+            alt="sad"
             className="size-11.5 cursor-move"
-            id="external-draggable"
+            id="sad"
             draggable
-            onDragStart={(e) => handleDragStart(e, 'external-draggable')}
+            onDragStart={(e) => handleDragStart(e, 'sad')}
           />
           <img
-            src="https://placehold.co/64"
-            alt="emotion"
+            src="excited.webp"
+            alt="excited"
             className="size-11.5 cursor-move"
-            id="external-draggable"
+            id="excited"
             draggable
-            onDragStart={(e) => handleDragStart(e, 'external-draggable')}
+            onDragStart={(e) => handleDragStart(e, 'excited')}
           />
           <img
-            src="https://placehold.co/64"
-            alt="emotion"
+            src="loved.webp"
+            alt="loved"
             className="size-11.5 cursor-move"
-            id="external-draggable"
+            id="loved"
             draggable
-            onDragStart={(e) => handleDragStart(e, 'external-draggable')}
+            onDragStart={(e) => handleDragStart(e, 'loved')}
           />
           <img
-            src="https://placehold.co/64"
-            alt="emotion"
+            src="lonely.webp"
+            alt="lonely"
             className="size-11.5 cursor-move"
-            id="external-draggable"
+            id="lonely"
             draggable
-            onDragStart={(e) => handleDragStart(e, 'external-draggable')}
+            onDragStart={(e) => handleDragStart(e, 'lonely')}
           />
           <img
-            src="https://placehold.co/64"
-            alt="emotion"
+            src="tired.webp"
+            alt="tired"
             className="size-11.5 cursor-move"
-            id="external-draggable"
+            id="tired"
             draggable
-            onDragStart={(e) => handleDragStart(e, 'external-draggable')}
+            onDragStart={(e) => handleDragStart(e, 'tired')}
           />
           <img
-            src="https://placehold.co/64"
-            alt="emotion"
+            src="confused.webp"
+            alt="confused"
             className="size-11.5 cursor-move"
-            id="external-draggable"
+            id="confused"
             draggable
-            onDragStart={(e) => handleDragStart(e, 'external-draggable')}
+            onDragStart={(e) => handleDragStart(e, 'confused')}
           />
           <img
-            src="https://placehold.co/64"
-            alt="emotion"
+            src="angry.webp"
+            alt="angry"
             className="size-11.5 cursor-move"
-            id="external-draggable"
+            id="angry"
             draggable
-            onDragStart={(e) => handleDragStart(e, 'external-draggable')}
+            onDragStart={(e) => handleDragStart(e, 'angry')}
           />
         </div>
       )}

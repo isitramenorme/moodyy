@@ -9,6 +9,7 @@ type CalendarProps = {
 function getMonthFromName(monthName: string | null): number | null {
   const parsedDate = Date.parse(monthName + ' 1, 2000')
   if (!isNaN(parsedDate)) {
+    console.log(new Date(parsedDate).getMonth())
     return new Date(parsedDate).getMonth()
   }
   return null
@@ -28,7 +29,7 @@ const Calendar = ({
     return
   }
   const monthNum = getMonthFromName(month)
-  if (!monthNum) {
+  if (monthNum === null) {
     return
   }
   const firstDayOfMonth = new Date(yearNum, monthNum, 1)
