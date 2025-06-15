@@ -21,5 +21,5 @@ export default defineConfig({
       '@': resolve(__dirname, './src'),
     },
   },
-  base: 'moodyy',
+  base: '/moodyy/',
 })
