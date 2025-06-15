@@ -1,0 +1,1 @@
+import{j as o}from"./index-DoMNGXci.js";function e({val:t,setVal:n}){return o.jsx("button",{type:"button",onClick:()=>n(t),className:"bg-white/40 py-3 px-4 text-2xl rounded-lg cursor-pointer",children:t})}export{e as B};
